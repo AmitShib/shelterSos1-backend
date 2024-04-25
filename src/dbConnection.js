@@ -1,25 +1,15 @@
 const { Client } = require('pg');
 
+// PostgreSQL connection details
 const client = new Client({
   user: 'myuser',
-  host: 'localhost', // Use the service name from the Docker Compose file
-  database: 'shelterUsers', // Updated database name
+  host: 'localhost', // Replace with the appropriate host (container IP or service name)
+  database: 'shelterUsers',
   password: 'mysecretpassword',
-  port: 5432, // Default PostgreSQL port
+  port: 5432,
 });
 
-client.connect()
-  .then(() => console.log('Connected to PostgreSQL database'))
-  .catch(err => console.error('Error connecting to PostgreSQL database', err.stack));
+// Connect to the PostgreSQL database
+client.connect();
 
-// Query the users table within the users schema
-const query = `
-  SELECT *
-  FROM "users"."users"; -- Double-quoted identifiers for case-sensitivity
-`;
-
-client.query(query, (err, res) => {
-  if (err) throw err;
-  console.log(res.rows);
-  client.end(); // Close the connection
-});
+module.exports = client;
