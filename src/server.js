@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const userRoutes = require('./userRoutes');
+const reportRoutes = require('./reportRoutes');
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
@@ -14,6 +15,7 @@ app.use((req, res, next) => {
 
 // Mount the user routes
 app.use('/', userRoutes);
+app.use('/', reportRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;
