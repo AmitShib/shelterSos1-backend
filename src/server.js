@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const userRoutes = require('./userRoutes');
 const reportRoutes = require('./reportRoutes');
+const cors = require('cors');
+
+app.use(cors()); // Allow all origins, methods, and headers
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
